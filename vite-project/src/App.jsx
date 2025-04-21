@@ -1,50 +1,35 @@
-import { Canvas } from "@react-three/fiber"
-import { Environment, OrbitControls, PerspectiveCamera, useGLTF } from "@react-three/drei"
+import { Canvas, useThree} from "@react-three/fiber"
+import { Environment, OrbitControls, PerspectiveCamera, useGLTF} from "@react-three/drei"
 import { DasMap } from "../Components/Map.jsx"
 import './App.css'
-import { Suspense, useState } from "react"
+import { Suspense, useState, useRef, useEffect } from "react"
 
-function Interaction(props) {
-  const { nodes } = useGLTF('../public/DASMA.glb')
-  const [ Salawag_Color, Salawag_setColor] = useState('gray')
-  const [ Salitran_IV_Color, Salitran_IV_setColor] = useState('gray')
+function Controls() {
+  const { camera, gl } = useThree()
+  const controlsRef = useRef()
 
-  const [ activeBarangay, setActiveBarangay ] = useState(null)
-
-  const handleClick = (name) => {
-    setActiveBarangay(prev => (prev === name? null : name))
-  }
-
-  const getColor = (name) => activeBarangay === name? 'red' : 'gray'
+  useEffect(() => {
+    if(controlsRef.current){
+      controlsRef.current.minPolarAngle = 0
+      controlsRef.current.minDistance = 10
+      controlsRef.current.maxDistance = 50
+      controlsRef.current.maxPolarAngle = Math.PI / 3
+      controlsRef.current.update()
+    }
+  }, [camera])
 
 
   return (
-    <group {...props} dispose={null}>
-      <mesh
-        scale={19.644} 
-        position={[-1.468, 0.009, -7.783]}
-        geometry={nodes.Salawag.geometry} 
-        onClick={() => {
-          console.log("ClIcED SALAWAG")
-          handleClick('Salawag')
-        }}  
-      >
-        <meshStandardMaterial color={getColor('Salawag')}/>      
-      </mesh>
-      <mesh 
-        scale={19.644}
-        position={[-2.754, 0.009, -7.807]}
-        geometry={nodes.Salitran_IV.geometry} 
-        onClick={() => {
-          console.log("ClIcED SALITRAN")
-          handleClick('Salitran_IV')
-        }}  
-      >
-        <meshStandardMaterial color={getColor('Salitran_IV')}/>   
-      </mesh>  
-      
-    </group>  
+    <OrbitControls
+      autoRotate 
+      autoRotateSpeed={0}
+      enablePan={false}
+      target={[2, 0, 3]}
+      ref={controlsRef}
+      args={[camera, gl.domElement]}
+    />
   )
+
 }
 
 export default function index() {
@@ -52,14 +37,16 @@ export default function index() {
    <div className="box">
      <Canvas>
         <Suspense fallback={null}>
+
           <Environment preset="sunset" />
-          <PerspectiveCamera makeDefault position={[0, 20, 0]}></PerspectiveCamera>
-          <OrbitControls autoRotate autoRotateSpeed={1}/> 
+          <PerspectiveCamera makeDefault position={[20, 20, 15]}></PerspectiveCamera>
           
+          <Controls />
           <DasMap />
-          <Interaction />
          </Suspense>
      </Canvas>
-   </div>        
+     
+   </div>     
+      
  )
 }
