@@ -1,13 +1,24 @@
-import { Canvas, useThree } from "@react-three/fiber"
+import { Canvas } from "@react-three/fiber"
+import { render } from 'react-dom'
+import SlidingPane from 'react-sliding-pane'
+import 'react-sliding-pane/dist/react-sliding-pane.css'
 import { Environment, PerspectiveCamera, useGLTF} from "@react-three/drei"
 import { DasMap } from "../Components/Map.jsx"
 import './App.css'
-import { Suspense, useState, useRef, useEffect } from "react"
+import { Suspense, useState} from "react"
 
+export function Popup_Info() {
+  const [state, setState] = useState({
+    isPaneOpen: false,
+    isPaneOpenLeft: false
+  })
 
+  return (
+    pass
+  )
+}
 
 export default function index() {
- const brgyRef = useRef(null)
  return (
    <div className="box">
      <Canvas>
@@ -18,8 +29,7 @@ export default function index() {
           
           <DasMap />
          </Suspense>
-     </Canvas>
-     
+     </Canvas>   
    </div>     
       
  )
