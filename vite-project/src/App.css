@@ -1,12 +1,47 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
+@font-face {
+  font-family: 'F1_Italic';
+  src: url('./fonts/Formula1-Italic.ttf') format('truetype');
+}
+
+
+.Parent {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-around;
+  
+
+  width: 100vw  ;
+  height: 100vh;
 }
 
 .box {
-  width: 90vw;
-  height: 100vh
+  width: 80%;
+  height: 100%;
+
 }
+
+.sidebar_Brgy_Button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 50px;
+  border-radius: 10%;
+  background-color: #1D1616;
+}
+
+.sidebar_Brgy {
+  width: 30%;
+  
+  
+  color: black;
+}
+
+p {
+  font-family: 'F1_Italic';
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
