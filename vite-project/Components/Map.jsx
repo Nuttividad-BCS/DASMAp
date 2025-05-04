@@ -1,21 +1,7 @@
-import React, { useRef, useState } from 'react'
+import React from 'react'
 import { useGLTF, OrbitControls } from '@react-three/drei'
 import { useFrame } from "@react-three/fiber"
 import * as THREE from 'three'
-
-import SlidingPane from "react-sliding-pane"
-import "react-sliding-pane/dist/react-sliding-pane.css"
-
-async function resetMoveCam({target, fromTargetPosition}) {
-  useFrame((state) => {
-    const [tx, ty, tz] = fromTargetPosition
-
-
-  })
-  return null
-}
-
-
 
 function MoveCam({ target, clicked, targetPosition }) {
   useFrame((state) => {
@@ -23,67 +9,18 @@ function MoveCam({ target, clicked, targetPosition }) {
       const [tx, ty, tz] = targetPosition
       const targetVec = new THREE.Vector3(tx, ty, tz)
       state.camera.position.lerp(targetVec.clone().add(new THREE.Vector3(0, 5, 5)), 0.05)
-
       state.camera.lookAt(targetVec)
-      
     }
   })
-
   return null
 }
 
-export function PassName(name, activeB, handleClick) {
-  if (name === activeB) {
-    handleClick(name)
-  }
-  
-  return null
-}
-
-export function DasMap(props) {
-  const { nodes, materials } = useGLTF('/DASMA.glb')
-  const [ activeBarangay, setActiveBarangay ] = useState(null)
-  const [clicked, setClicked] = useState(false)  // State to check if mesh is clicked
-  const [targetPosition, setTargetPosition] = useState([0, 0, 0])
-  const brgyRef = useRef({})
-
-  const [state, setState] = useState({
-      isPaneOpen: false,
-      isPaneOpenLeft: false,
-  })
-
-  const handleClick = (name) => {
-    if (activeBarangay === name) {
-      setState({ isPaneOpen: true }) // Open the sliding pane
-      setActiveBarangay(null) // Unselect the barangay
-      setClicked(false)       // Reset clicked state
-      resetCamera()
-    } else if (!activeBarangay) {
-      // If no barangay is selected, set the clicked barangay as active
-      setActiveBarangay(name)
-      setClicked(true)
-      
-      // Store the position of the selected barangay
-      if (brgyRef.current && brgyRef.current[name]) {
-        const mesh = brgyRef.current[name]
-        const box = new THREE.Box3().setFromObject(mesh)
-        const center = new THREE.Vector3()
-        box.getCenter(center)
-        setTargetPosition([center.x, center.y, center.z])
-      }
-    }
-
-  }
-
-  const resetCamera = () => {
-    setClicked(false)
-    setTargetPosition([0, 0, 0])  // Set to default position if resetting
-  }
-
+export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, brgyRef }) {
+  const { nodes, materials } = useGLTF('/DASMA.glb') 
 
   return (
     <>
-      <group {...props} dispose={null}>
+      <group dispose={null}>
         <mesh
           ref={(el) => {if (el) brgyRef.current["Santa_Fe"] = el}}
           onClick={() => {
@@ -385,7 +322,6 @@ export function DasMap(props) {
             console.log("Clicked Salawag")
             handleClick('Salawag')
           }}
-          
           geometry={nodes.Salawag.geometry}
           material={materials['SVGMat.032']}
           position={[-1.468, 0.009, -7.783]}
@@ -1190,9 +1126,8 @@ export function DasMap(props) {
           maxDistance={60}
           target={new THREE.Vector3(...targetPosition)}
         />
-        <MoveCam target={activeBarangay ? brgyRef.current[activeBarangay] : null} clicked={clicked} targetPosition={targetPosition}/>
+        <MoveCam target={activeBarangay ? brgyRef.current[activeBarangay] : null} clicked={clicked} targetPosition={targetPosition} />
       </group>
-      
     </>
   )
 }

@@ -3,10 +3,12 @@
   src: url('./fonts/Formula1-Italic.ttf') format('truetype');
 }
 
+
 html, body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 p {
@@ -65,6 +67,12 @@ p {
   border-radius: 10%;
   background-color: #222831;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  transition: ease-out 0.7s;
+}
+
+.sidebar_Brgy_Button:hover {
+  background-color: #FF1801;
+  transition: ease-in 0.5s;
 }
 
 .sidebar_Brgy {
@@ -104,9 +112,17 @@ p {
 }
 
 .sidebar_Brgy_Selector_Button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 10px;
   background-color: #FF1801;
   width: 45%;
   border-radius: 5px 5px 5px 5px;
+  transition: ease-out 0.6s;
+}
+
+.lrg{
+  font-size: 16px;
 }
 
