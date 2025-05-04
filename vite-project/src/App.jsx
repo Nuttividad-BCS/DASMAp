@@ -4,50 +4,26 @@ import { DasMap } from "../Components/Map.jsx"
 import './App.css'
 import { Suspense, useState } from "react"
 import React from "react"
-
-import SlidingPane from "react-sliding-pane"
-import "react-sliding-pane/dist/react-sliding-pane.css"
+import { SlideP } from "../Components/Slide.jsx"
 
 
 export default function index() {
-  const [state, setState] = useState({
-    isPaneOpen: false,
-    isPaneOpenLeft: false,
-  })
+const [isPaneOpen, setIsPaneOpen] = useState(false)
  return (
   <div className="Parent">  
-
-    <div onClick={  
-      () => setState({ isPaneOpen: true })
-    } className="sidebar_Brgy_Button"><p>Barangays</p></div>
-    <SlidingPane
-                className="sidebar_Brgy"
-                width="300px"
-                overlayClassName="some-custom-overlay-class"
-                isOpen={state.isPaneOpen}
-                from="left"
-                
-                title="Dasmariñas Barangays"
-                subtitle="Optional subtitle."
-                onRequestClose={() => {
-                // triggered on "<" on left top click or on outside click
-                setState({ isPaneOpen: false });
-            }}
-            >
-    </SlidingPane>
-
-
-    <div className="box">
-      <Canvas>
-          <Suspense fallback={null}>
-
-            <Environment preset="sunset" />
-            <PerspectiveCamera makeDefault position={[20, 20, 15]}></PerspectiveCamera>
-            
-            <DasMap />
-          </Suspense>
-      </Canvas>   
-    </div>     
+    <div className="Main_Header"><h1>D A S M A - P</h1></div>
+    <div className="Main_Container">
+      <SlideP isPaneOpen={isPaneOpen} setIsPaneOpen={setIsPaneOpen} />
+      <div className="box">
+        <Canvas>
+            <Suspense fallback={null}>
+              <Environment preset="sunset" />
+              <PerspectiveCamera makeDefault position={[20, 20, 15]}></PerspectiveCamera>    
+              <DasMap />
+            </Suspense>
+        </Canvas>   
+      </div> 
+    </div>      
   </div>   
   
  )

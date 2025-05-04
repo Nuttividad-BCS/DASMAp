@@ -1,30 +1,41 @@
 import React, { Component, useState } from "react"
-import { render } from "react-dom"
+import '../src/App.css'
 import SlidingPane from "react-sliding-pane"
+import { PassName } from "../Components/Map.jsx"
 import "react-sliding-pane/dist/react-sliding-pane.css"
 
-export function SlideP() {
-    const [state, setState] = useState({
-        isPaneOpen: false,
-        isPaneOpenLeft: false,
-      })
+export function SlideP({ isPaneOpen, setIsPaneOpen }) {
 
     return (
-        <div>
-            <SlidingPane
-            className="some-custom-class"
-            overlayClassName="some-custom-overlay-class"
-            isOpen={state.isPaneOpen}
-            title="Hey, it is optional pane title.  I can be React component too."
-            subtitle="Optional subtitle."
-            onRequestClose={() => {
-            // triggered on "<" on left top click or on outside click
-            setState({ isPaneOpen: false });
-        }}
-        ><div>And I am pane content. BTW, what rocks?</div>
-        <br />
-        <img src="img.png" />
-        </SlidingPane>
-        </div>
+        <>
+            <div onClick={ () => setIsPaneOpen(true) } 
+            className="sidebar_Brgy_Button"><p>Barangays</p></div>
+            <SlidingPane 
+                hideHeader={true}  
+                className="sidebar_Brgy"
+                isOpen={isPaneOpen}
+                from="left"
+                title="Dasmarinas Barangays"
+                subtitle="Click outside to close panel"
+                onRequestClose={() => setIsPaneOpen(false) }
+            >
+            <div className="sidebar_Brgy_Header">
+                <h3>Dasmarinas Barangays</h3>
+                <p>Click on the Barangay to view details</p>
+            </div>
+            <div className="sidebar_Brgy_Selector">
+                <div onClick={() => PassName('Burol_I', 'Burol_I')}
+                className="sidebar_Brgy_Selector_Button">
+                    <p>Burol_I</p>
+                </div>
+                <div className="sidebar_Brgy_Selector_Button">
+                    <p>Burol_II</p>
+                </div>
+                <div className="sidebar_Brgy_Selector_Button">
+                    <p>Burol_III</p>
+            </div>
+                </div>
+            </SlidingPane>
+        </>
     )
 }

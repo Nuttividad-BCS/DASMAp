@@ -32,7 +32,13 @@ function MoveCam({ target, clicked, targetPosition }) {
   return null
 }
 
-
+export function PassName(name, activeB, handleClick) {
+  if (name === activeB) {
+    handleClick(name)
+  }
+  
+  return null
+}
 
 export function DasMap(props) {
   const { nodes, materials } = useGLTF('/DASMA.glb')
