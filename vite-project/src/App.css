@@ -70,7 +70,20 @@ p {
   transition: ease-out 0.7s;
 }
 
-.sidebar_Brgy_Button:hover {
+.hmapButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 70px;
+  border-radius: 10%;
+  background-color: #222831;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  transition: ease-out 0.7s;
+}
+
+.sidebar_Brgy_Button:hover,
+.hmapButton:hover {
   background-color: #FF1801;
   transition: ease-in 0.5s;
 }

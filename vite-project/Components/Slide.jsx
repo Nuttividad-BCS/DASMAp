@@ -100,7 +100,7 @@ export function SlideP({ isPaneOpen, setIsPaneOpen, handleClick }) {
           <div onClick={() => handleClick('Santa_Lucia')} className="sidebar_Brgy_Selector_Button"><p>Santa Lucia</p></div>
           <div onClick={() => handleClick('Santa_Maria')} className="sidebar_Brgy_Selector_Button"><p>Santa Maria</p></div>
           <div onClick={() => handleClick('Santo_Cristo')} className="sidebar_Brgy_Selector_Button"><p>Santo Cristo</p></div>
-          <div onClick={() => handleClick('Sant0_Estoban')} className="sidebar_Brgy_Selector_Button"><p>Santo Estoban</p></div>
+          <div onClick={() => handleClick('Santo_Estoban')} className="sidebar_Brgy_Selector_Button"><p>Santo Estoban</p></div>
           <div onClick={() => handleClick('Santo_Nino_I')} className="sidebar_Brgy_Selector_Button"><p>Santo Niño I</p></div>
           <div onClick={() => handleClick('Santo_Nino_II')} className="sidebar_Brgy_Selector_Button"><p>Santo Niño II</p></div>
           <div onClick={() => handleClick('Santo_Peter_I')} className="sidebar_Brgy_Selector_Button"><p>Santo Peter I</p></div>

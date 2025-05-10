@@ -15,12 +15,17 @@ function MoveCam({ target, clicked, targetPosition }) {
   return null
 }
 
-export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, brgyRef }) {
+export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, brgyRef, barangayColors, heatmapped}) {
   const { nodes, materials } = useGLTF('/DASMA.glb') 
+  
+  const getBarangayColor = (barangayName) => {
+    const color = barangayColors[barangayName]
+    return color ? color : '#808080'
+  }
 
   return (
     <>
-      <group dispose={null}>
+      <group position={[-1, 0, -4]} dispose={null}>
         <mesh
           ref={(el) => {if (el) brgyRef.current["Santa_Fe"] = el}}
           onClick={() => {
@@ -32,7 +37,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[1.042, 0.009, -0.049]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Santa_Fe' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? getBarangayColor("Santa_Fe") : (activeBarangay ==='Santa_Fe' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -46,7 +51,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-0.259, 0.016, -2.853]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Burol_I' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Burol_I"]}` : (activeBarangay === 'Burol_I' ? 'red' : 'gray')} />
         </mesh>
 
         <mesh
@@ -60,7 +65,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[0.775, 0.009, -0.736]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Burol_II' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Burol_II"]}` : (activeBarangay === 'Burol_II' ? 'red' : 'gray')} />
         </mesh>
 
         <mesh
@@ -74,7 +79,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[0.138, 0.009, -3.526]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Burol_III' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Burol_III"]}` : (activeBarangay === 'Burol_III' ? 'red' : 'gray')} />
         </mesh>
 
         <mesh
@@ -88,7 +93,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-3.165, 0.009, -3.017]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Burol_Main' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Burol_Main"]}` : (activeBarangay === 'Burol_Main' ? 'red' : 'gray')} />
         </mesh>
 
         <mesh
@@ -102,7 +107,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-0.393, 0.009, -2.701]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Datu_Esmael' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Datu_Esmael"]}` : (activeBarangay === 'Datu_Esmael' ? 'red' : 'gray')} />
         </mesh>
 
         <mesh
@@ -116,7 +121,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-0.053, 0.009, 0.7]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Emannuel_Bergado_I' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Emannuel_Bergado_I"]}` : (activeBarangay === 'Emannuel_Bergado_I' ? 'red' : 'gray')} />
         </mesh>
 
         <mesh
@@ -130,7 +135,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[0.365, 0.009, 1.017]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Emannuel_Bergado_II' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Emannuel_Bergado_II"]}` : (activeBarangay === 'Emannuel_Bergado_II' ? 'red' : 'gray')} />
         </mesh>
 
         <mesh
@@ -144,7 +149,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-0.016, 0.009, -0.744]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Fatima_I' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Fatima_I"]}` : (activeBarangay === 'Fatima_I' ? 'red' : 'gray')} />
         </mesh>
 
         <mesh
@@ -158,7 +163,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[0.147, 0.009, 0.246]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Fatima_I(2)' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Fatima_I(2)"]}` : (activeBarangay ==='Fatima_I(2)' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -172,7 +177,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[0.682, 0.009, 0.84]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Fatima_II' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Fatima_II"]}` : (activeBarangay ==='Fatima_II' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -186,7 +191,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[1.03, 0.009, 1.432]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Fatima_III' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Fatima_III"]}` : (activeBarangay ==='Fatima_III' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -200,7 +205,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-0.56, 0.009, -2.359]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='H2' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["H2"]}` : (activeBarangay ==='H2' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -214,7 +219,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-4.333, 0.009, 4.219]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Langkaan_I' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Langkaan_I"]}` : (activeBarangay ==='Langkaan_I' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -229,7 +234,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           rotation={[0, 0.017, 0]}
           scale={19.823}
         >
-          <meshStandardMaterial color={activeBarangay ==='Langkaan_II' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Langkaan_II"]}` : (activeBarangay ==='Langkaan_II' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -243,7 +248,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[1.217, 0.009, 0.744]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Luzviminda_I' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Luzviminda_I"]}` : (activeBarangay ==='Luzviminda_I' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -257,7 +262,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[1.679, 0.009, 1.834]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Luzviminda_II' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Luzviminda_II"]}` : (activeBarangay ==='Luzviminda_II' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -271,7 +276,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[3.886, 0.009, 4.573]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Paliparan_I' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Paliparan_I"]}` : (activeBarangay ==='Paliparan_I' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -285,7 +290,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[3.774, 0.009, 1.949]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Paliparan_II' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Paliparan_II"]}` : (activeBarangay ==='Paliparan_II' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -299,7 +304,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[3.37, 0.009, -0.875]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Paliparan_III' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Paliparan_III"]}` : (activeBarangay ==='Paliparan_III' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -313,7 +318,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-6.713, 0.009, -6.095]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Sabang' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Sabang"]}` : (activeBarangay ==='Sabang' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -327,7 +332,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-1.468, 0.009, -7.783]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Salawag' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Salawag"]}` : (activeBarangay ==='Salawag' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -341,7 +346,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-4.915, 0.009, -7.265]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Salitran_I' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Salitran_I"]}` : (activeBarangay ==='Salitran_I' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -355,7 +360,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-4.367, 0.009, -5.237]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Salitran_II' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Salitran_II"]}` : (activeBarangay ==='Salitran_II' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -369,7 +374,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-3.003, 0.009, -6.873]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Salitran_III' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Salitran_III"]}` : (activeBarangay ==='Salitran_III' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -383,7 +388,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-2.754, 0.009, -7.807]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Salitran_IV' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Salitran_IV"]}` : (activeBarangay ==='Salitran_IV' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -397,7 +402,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-0.892, 0.009, 3.305]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Sampaloc_I' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Sampaloc_I"]}` : (activeBarangay ==='Sampaloc_I' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -411,7 +416,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-0.786, 0.009, 5.382]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Sampaloc_II' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Sampaloc_II"]}` : (activeBarangay ==='Sampaloc_II' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -425,7 +430,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-0.761, 0.009, 5.03]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Sampaloc_II(2)' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Sampaloc_II(2)"]}` : (activeBarangay ==='Sampaloc_II(2)' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -439,7 +444,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[2.578, 0.009, 5.414]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Sampaloc_III' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Sampaloc_III"]}` : (activeBarangay ==='Sampaloc_III' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -453,7 +458,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[0.08, 0.009, 1.373]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Sampaloc_IV' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Sampaloc_IV"]}` : (activeBarangay ==='Sampaloc_IV' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -467,7 +472,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[0.884, 0.092, 6.801]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Sampaloc_V' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Sampaloc_V"]}` : (activeBarangay ==='Sampaloc_V' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -481,7 +486,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-4.19, 0.027, 1.485]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='San_Agustin_I' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["San_Agustin_I"]}` : (activeBarangay ==='San_Agustin_I' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -495,7 +500,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-3.19, 0.015, -0.138]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='San_Agustin_II' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["San_Agustin_II"]}` : (activeBarangay ==='San_Agustin_II' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -509,7 +514,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-4.119, 0.009, -0.286]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='San_Agustin_III' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["San_Agustin_III"]}` : (activeBarangay ==='San_Agustin_III' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -523,7 +528,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[1.492, 0.009, -0.315]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='San_Andres_I' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["San_Andres_I"]}` : (activeBarangay ==='San_Andres_I' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -537,7 +542,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[1.856, 0.009, 0.024]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='San_Andres_II' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["San_Andres_II"]}` : (activeBarangay ==='San_Andres_II' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -551,7 +556,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-0.408, 0.009, 0.191]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='San_Antonio_De_Padua_I' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["San_Antonio_De_Padua_I"]}` : (activeBarangay ==='San_Antonio_De_Padua_I' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -565,7 +570,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-0.45, 0.009, 0.682]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='San_Antonio_De_Padua_II' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["San_Antonio_De_Padua_II"]}` : (activeBarangay ==='San_Antonio_De_Padua_II' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -579,7 +584,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-1.102, 0.009, -3.716]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='San_Dionisio' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["San_Dionisio"]}` : (activeBarangay ==='San_Dionisio' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -593,7 +598,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[1.275, 0.009, -0.225]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='San_Francisco_I' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["San_Francisco_I"]}` : (activeBarangay ==='San_Francisco_I' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -607,7 +612,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[1.367, 0.009, 0.113]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='San_Francisco_I001' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["San_Francisco_I001"]}` : (activeBarangay ==='San_Francisco_I001' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -621,7 +626,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[1.245, 0.009, -0.255]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='San_Francisco_I(2)' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["San_Francisco_I(2)"]}` : (activeBarangay ==='San_Francisco_I(2)' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -635,7 +640,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-1.479, 0.009, -4.325]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='San_IL_I' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["San_IL_I"]}` : (activeBarangay ==='San_IL_I' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -649,7 +654,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-1.777, 0.009, -3.961]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='San_IL_II' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["San_IL_II"]}` : (activeBarangay ==='San_IL_II' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -663,7 +668,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-6.434, 0.017, -3.738]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='San_Jose' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["San_Jose"]}` : (activeBarangay ==='San_Jose' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -677,7 +682,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-1.673, 0.009, -3.585]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='San_Juan' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["San_Juan"]}` : (activeBarangay ==='San_Juan' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -691,7 +696,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-0.008, 0.009, 1.848]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='San_Lorenzo_Ruis_I' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["San_Lorenzo_Ruis_I"]}` : (activeBarangay ==='San_Lorenzo_Ruis_I' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -705,7 +710,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-0.485, 0.009, 1.738]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='San_Lorenzo_Ruis_II' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["San_Lorenzo_Ruis_II"]}` : (activeBarangay ==='San_Lorenzo_Ruis_II' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -719,7 +724,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[0.625, 0.009, 1.764]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='San_Luis_I' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["San_Luis_I"]}` : (activeBarangay ==='San_Luis_I' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -733,7 +738,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[0.664, 0.009, 1.08]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='San_Luis_II' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["San_Luis_II"]}` : (activeBarangay ==='San_Luis_II' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -747,7 +752,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-1.516, 0.009, -2.828]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='San_Manuel_I' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["San_Manuel_I"]}` : (activeBarangay ==='San_Manuel_I' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -761,7 +766,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-1.347, 0.009, -2.697]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='San_Manuel_II' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["San_Manuel_II"]}` : (activeBarangay ==='San_Manuel_II' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -775,7 +780,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[1.548, 0.018, 0.686]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='San_Mateo' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["San_Mateo"]}` : (activeBarangay ==='San_Mateo' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -789,7 +794,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-2.128, 0.009, -2.978]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='San_Miguel_I' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["San_Miguel_I"]}` : (activeBarangay ==='San_Miguel_I' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -803,7 +808,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-1.792, 0.009, -3.13]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='San_Miguel_II' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["San_Miguel_II"]}` : (activeBarangay ==='San_Miguel_II' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -817,7 +822,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[1.779, 0.009, 1.112]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='San_Nicholas_I' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["San_Nicholas_I"]}` : (activeBarangay ==='San_Nicholas_I' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -831,7 +836,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[2.25, 0.009, 0.77]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='San_Nicholas_II' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["San_Nicholas_II"]}` : (activeBarangay ==='San_Nicholas_II' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -845,7 +850,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[1.64, 0.009, -0.514]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='San_Roque' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["San_Roque"]}` : (activeBarangay ==='San_Roque' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -859,7 +864,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[2.133, 0.009, -0.115]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='San_Simon' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["San_Simon"]}` : (activeBarangay ==='San_Simon' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -873,7 +878,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[1.957, 0.009, -0.55]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Santa_Cristina_I' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Santa_Cristina_I"]}` : (activeBarangay ==='Santa_Cristina_I' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -887,7 +892,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[1.358, 0.009, -0.637]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Santa_Cristina_II' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Santa_Cristina_II"]}` : (activeBarangay ==='Santa_Cristina_II' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -901,7 +906,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-0.497, 0.013, 1.36]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Santa_Cruz_I' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Santa_Cruz_I"]}` : (activeBarangay ==='Santa_Cruz_I' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -915,7 +920,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-0.434, 0.009, 1.018]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Santa_Cruz_II' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Santa_Cruz_II"]}` : (activeBarangay ==='Santa_Cruz_II' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -929,7 +934,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-1.377, 0.009, -3.204]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Santa_Lucia' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Santa_Lucia"]}` : (activeBarangay ==='Santa_Lucia' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -943,7 +948,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-0.612, 0.009, -0.634]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Santa_Maria' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Santa_Maria"]}` : (activeBarangay ==='Santa_Maria' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -957,7 +962,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-0.593, 0.009, -3.767]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Santo_Cristo' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Santo_Cristo"]}` : (activeBarangay ==='Santo_Cristo' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -971,7 +976,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-0.373, 0.009, -3.045]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Santo_Estoban' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Santo_Estoban"]}` : (activeBarangay ==='Santo_Estoban' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -985,7 +990,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-1.103, 0.009, -4.126]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Santo_Nino_I' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Santo_Nino_I"]}` : (activeBarangay ==='Santo_Nino_I' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -999,7 +1004,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-0.671, 0.009, -4.127]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Santo_Nino_II' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Santo_Nino_II"]}` : (activeBarangay ==='Santo_Nino_II' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -1013,7 +1018,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-2, 0.004, -3.08]}
           scale={[32.013, 19.468, 32.013]}
         >
-          <meshStandardMaterial color={activeBarangay ==='St_Peter_I' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["St_Peter_I"]}` : (activeBarangay ==='St_Peter_I' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -1027,7 +1032,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-2.331, 0.004, -3.061]}
           scale={[34.922, 20.005, 34.922]}
         >
-          <meshStandardMaterial color={activeBarangay ==='St_Peter_II' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["St_Peter_II"]}` : (activeBarangay ==='St_Peter_II' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -1041,7 +1046,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[2.999, 0.011, 1.468]}
           scale={[51.524, 19.433, 51.524]}
         >
-          <meshStandardMaterial color={activeBarangay ==='Victoria_Reyes' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Victoria_Reyes"]}` : (activeBarangay ==='Victoria_Reyes' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -1055,7 +1060,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-4.616, 0.009, -1.847]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Zone_I' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Zone_I"]}` : (activeBarangay ==='Zone_I' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -1070,7 +1075,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           rotation={[Math.PI, -0.052, Math.PI]}
           scale={[-45.186, -20.06, -45.186]}
         >
-          <meshStandardMaterial color={activeBarangay ==='Zone_IA' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Zone_IA"]}` : (activeBarangay ==='Zone_IA' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -1084,7 +1089,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-5.079, 0.009, -1.373]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Zone_II' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Zone_II"]}` : (activeBarangay ==='Zone_II' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -1098,7 +1103,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-5.59, 0.038, -1.215]}
           scale={19.644}
         >
-          <meshStandardMaterial color={activeBarangay ==='Zone_III' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Zone_III"]}` : (activeBarangay ==='Zone_III' ? 'red' : 'gray')}/>
         </mesh>
 
         <mesh
@@ -1112,7 +1117,7 @@ export function DasMap({ handleClick, activeBarangay, clicked, targetPosition, b
           position={[-4.006, 0.015, -0.041]}
           scale={[43.436, 19.131, 43.436]}
         >
-          <meshStandardMaterial color={activeBarangay ==='Zone_IV' ? 'red' : 'gray'}/>
+          <meshStandardMaterial color={heatmapped ? `${barangayColors["Zone_IV"]}` : (activeBarangay ==='Zone_IV' ? 'red' : 'gray')}/>
         </mesh>
 
         <OrbitControls
